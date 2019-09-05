@@ -2,7 +2,7 @@ languageCode = "en-us"
 title = "MIMIC-IV"
 version = "v0.1"
 theme = "mimic-theme"
-baseurl = "https://mit-lcp.github.io/mimic-building"
+baseurl = ""
 canonifyurls = false
 googleAnalytics = ""
 
@@ -60,27 +60,27 @@ TBD.
     weight = 10
     url = "/datasets/"
 [[menu.main]]
-    name = "Core"
+    name = "Core Tables"
     pre = "<i class='fa fa-columns'></i>"
     weight = 20
     url = "/core/"
 [[menu.main]]
-    name = "Hosp"
+    name = "Hosp Tables"
     pre = "<i class='fa fa-columns'></i>"
     weight = 30
     url = "/hosp/"
 [[menu.main]]
-    name = "ICU"
+    name = "ICU Tables"
     pre = "<i class='fa fa-columns'></i>"
     weight = 40
     url = "/icu/"
 [[menu.main]]
-    name = "ED"
+    name = "ED Tables"
     pre = "<i class='fa fa-columns'></i>"
     weight = 50
     url = "/ed/"
 [[menu.main]]
-    name = "CXR"
+    name = "CXR Tables"
     pre = "<i class='fa fa-columns'></i>"
     weight = 60
     url = "/cxr/"

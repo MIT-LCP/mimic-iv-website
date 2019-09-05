@@ -1,6 +1,6 @@
 +++
-title = "Transfers"
-linktitle = "transfers"
+title = "Admissions"
+linktitle = "admissions"
 weight = 1
 toc = false
 
