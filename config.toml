@@ -56,32 +56,32 @@ TBD.
     url = "/about/"
 [[menu.main]]
     name = "Datasets"
-    pre = "<i class='fa fa-columns'></i>"
+    pre = "<i class='fa fa-database'></i>"
     weight = 10
     url = "/datasets/"
 [[menu.main]]
     name = "Core Tables"
-    pre = "<i class='fa fa-columns'></i>"
+    pre = "<i class='fa fa-table'></i>"
     weight = 20
     url = "/core/"
 [[menu.main]]
     name = "Hosp Tables"
-    pre = "<i class='fa fa-columns'></i>"
+    pre = "<i class='fa fa-table'></i>"
     weight = 30
     url = "/hosp/"
 [[menu.main]]
     name = "ICU Tables"
-    pre = "<i class='fa fa-columns'></i>"
+    pre = "<i class='fa fa-table'></i>"
     weight = 40
     url = "/icu/"
 [[menu.main]]
     name = "ED Tables"
-    pre = "<i class='fa fa-columns'></i>"
+    pre = "<i class='fa fa-table'></i>"
     weight = 50
     url = "/ed/"
 [[menu.main]]
     name = "CXR Tables"
-    pre = "<i class='fa fa-columns'></i>"
+    pre = "<i class='fa fa-table'></i>"
     weight = 60
     url = "/cxr/"
 [[menu.main]]
