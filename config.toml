@@ -2,7 +2,7 @@ languageCode = "en-us"
 title = "MIMIC-IV"
 version = "v0.1"
 theme = "mimic-theme"
-baseurl = ""
+baseurl = "https://mimic-iv.mit.edu/"
 canonifyurls = false
 googleAnalytics = ""
 
