@@ -26,7 +26,13 @@ BigQuery is a columnar, distributed relational database management system. BigQu
 
 BigQuery has a hierarchy as follows: each project can contain one or more datasets, and each dataset can contain one or more tables. The rough equivalent for a project is a relational database, and the equivalent of a dataset is a schema. Unlike MIMIC-III, MIMIC-IV has four datasets (schemas). This allows users to immediately know the source of the data, and simplifies understanding of the database structure.
 
-Once you have access to MIMIC-IV, we highly recommend you read the [database introduction](/mimic-iv). Subsequent table by table documentation is [available online](/tables/overview.md).
+A tutorial on using BigQuery [is available online](/about/bigquery).
+
+<!--
+Once you have access to MIMIC-IV, we highly recommend you read the [database introduction](/mimic-iv). 
+-->
+
+Subsequent table by table documentation is [available online](/tables/overview) (TBD).
 
 ## Google Cloud bucket
 
