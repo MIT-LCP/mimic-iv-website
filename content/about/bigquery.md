@@ -1,7 +1,7 @@
 +++
-title = "Cloud"
-linktitle = "Cloud"
-weight = 3
+title = "BigQuery"
+linktitle = "BigQuery"
+weight = 4
 toc = false
 
 [menu]
