@@ -55,6 +55,11 @@ TBD.
     weight = 1
     url = "/about/"
 [[menu.main]]
+    name = "Basics"
+    pre = "<i class='fa fa-graduation-cap'></i>"
+    weight = 2
+    url = "/about/"
+[[menu.main]]
     name = "Datasets"
     pre = "<i class='fa fa-database'></i>"
     weight = 10
