@@ -18,7 +18,9 @@ We are primarily sharing MIMIC-IV via BigQuery. We highly recommend using BigQue
 
 ## BigQuery
 
-BigQuery is a columnar, distributed relational database management system. BigQuery accesses only the columns specified in the query, making it ideal for data analysis workflows. BigQuery is available at the following link: https://console.cloud.google.com/bigquery
+BigQuery is a columnar, distributed relational database management system. BigQuery accesses only the columns specified in the query, making it ideal for data analysis workflows. [Read more about BigQuery on Google.](https://cloud.google.com/bigquery/)
+
+BigQuery is available at the following link: https://console.cloud.google.com/bigquery
 
 ### Adding physionet-data
 
