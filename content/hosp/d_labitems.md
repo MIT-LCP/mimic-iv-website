@@ -16,7 +16,7 @@ toc = false
 
 **Table purpose:** Definition table for all laboratory measurements.
 
-**Number of rows:** 753
+**Number of rows:** 
 
 **Links to:** 
 
@@ -24,28 +24,29 @@ toc = false
 
 # Important considerations
 
-* The `ITEMID` from MIMIC-III v1.0 does *not* match the `ITEMID` from MIMIC-II v2.6. If a mapping between the two is necessary, please contact the guardians of the database.
-* Many of the LOINC codes were assigned during a project to standardize the ontology of lab measurements in the MIMIC database. Consequently, the codes were assigned post-hoc, and may not be present for every lab measurement. We welcome improvements to the present codes or assignment of LOINC codes to unmapped data elements from the community.
+* Many of the LOINC codes were assigned during a project to standardize the ontology of lab measurements in the MIMIC database. Consequently, the codes were assigned post-hoc, may not be perfect, and may not be present for every lab measurement.
+We welcome improvements to the present codes or assignment of LOINC codes to unmapped data elements from the community.
 
 # Table columns
 
 Name | Postgres data type 
 ---- | ---- 
-ITEMID | INT
-LABEL | VARCHAR(100) 
-FLUID | VARCHAR(100)
-CATEGORY | VARCHAR(100)
-LOINC_CODE | VARCHAR(100)
+`itemid` | INTEGER
+`label` | VARCHAR(50) 
+`fluid` | VARCHAR(50)
+`category` | VARCHAR(50)
+`loinc_code` | VARCHAR(50)
 	
 # Detailed Description
 
 `D_LABITEMS` contains definitions for all `ITEMID` associated with lab measurements in the MIMIC database. All data in LABEVENTS link to the D\_LABITEMS table. Each unique `LABEL` in the hospital database was assigned an `ITEMID` in this table, and the use of this `ITEMID` facilitates efficient storage and querying of the data. Note that lab items are kept separate while most definitions are contained in the D_ITEMS table, and there were good reasons to keep the lab items separate. 
 
-As the laboratory data is acquired from the hospital database, the data is consistent across all years in the database. Consequently, there is usually only one `ITEMID` associated with each concept in the database. Furthermore, the data contains information collected in departments outside the ICU. This includes both wards within the hospital and clinics outside the hospital. Most concepts in this table have been mapped to LOINC codes, an openly available ontology which provides a rich amount of information about the laboratory measurement including reference ranges, common units of measurement and other further detail regarding the measurement.
+As the laboratory data is acquired from the hospital database, the data is consistent across all years in the database. Consequently, there is usually only one `ITEMID` associated with each concept in the database.
+Furthermore, the data contains information collected in departments outside the ICU. This includes both wards within the hospital and clinics outside the hospital. Most concepts in this table have been mapped to LOINC codes, an openly available ontology which provides a rich amount of information about the laboratory measurement including reference ranges, common units of measurement and other further detail regarding the measurement.
 
 ## `ITEMID`
 
-As a candidate key in the table, `ITEMID` is unique to each row.
+A unique identifier for a laboratory concept. `itemid` is unique to each row, and can be used to identify data in LABEVENTS associated with a specific concept.
 
 ## `LABEL`
 

@@ -17,7 +17,7 @@ toc = false
 
 **Table purpose:** Definition table for ICD diagnoses.
 
-**Number of rows:** 108,911
+**Number of rows:** 
 
 **Links to:**
 

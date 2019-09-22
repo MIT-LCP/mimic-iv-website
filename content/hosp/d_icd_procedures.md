@@ -10,7 +10,7 @@ toc = false
 
 +++
 
-# The d_icd_procedures table
+# The D_ICD_PROCEDURES table
 
 **Table source:** Online sources.
 

@@ -11,13 +11,13 @@ toc = false
 +++
 
 
-# The d_labitems table
+# The d_micro table
 
 **Table source:** Hospital database.
 
 **Table purpose:** Definition table for all microbiology measurements.
 
-**Number of rows:** 1294
+**Number of rows:** 
 
 **Links to:** 
 
@@ -27,9 +27,9 @@ toc = false
 
 Name | Postgres data type 
 ---- | ---- 
-ITEMID | INT
-LABEL | VARCHAR(100)
-CATEGORY | VARCHAR(100)
+`itemid` | INTEGER
+`label` | VARCHAR(200)
+`category` | VARCHAR(100)
 
 ## `ITEMID`
 
