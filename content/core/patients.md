@@ -12,6 +12,8 @@ toc = false
 
 # The patients table
 
+Information that is consistent for the lifetime of a patient is stored in this table.
+
 **Table source:** Hospital database.
 
 **Table purpose:** Contains demographics for all patients.
@@ -22,7 +24,7 @@ toc = false
 
 Name | Postgres data type
 ---- | ----
-SUBJECT\_ID | INT
+subject_id | INT
 GENDER | VARCHAR(5)
 ANCHOR\_AGE | INT
 ANCHOR\_YEAR | INT
@@ -32,9 +34,9 @@ DOD | TIMESTAMP(0)
 
 # Detailed Description
 
-## `SUBJECT_ID`
+## `subject_id`
 
-`SUBJECT_ID` is a unique identifier which specifies an individual patient. `SUBJECT_ID` is a candidate key for the table, so is unique for each row. Information that is consistent for the lifetime of a patient is stored in this table.
+`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual. As `subject_id` is the primary key for the table, it is unique for each row. 
 
 ## `GENDER`
 

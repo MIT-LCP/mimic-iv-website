@@ -47,6 +47,8 @@ This table contains a record of all procedures a patient was billed for during t
 
 ## `subject_id`
 
+`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
+
 ## `hadm_id`
 
 ## `seq_num`

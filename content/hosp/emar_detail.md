@@ -72,6 +72,10 @@ Name | Postgres data type
 
 # Detailed Description
 
+## `subject_id`
+
+`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
+
 ## `parent_field_ordinal`
 
 parent field delineates multiple adm for the same eMar event, e.g. multiple formulary doses for the full dose.

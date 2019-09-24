@@ -49,8 +49,6 @@ VALUENUM | Decimal number
 VALUEUOM | Text
 WARNING | Binary (0 or 1)
 
-# Detailed Description
-
 ## `subject_id`, `hadm_id`, `stay_id`
 
 Identifiers which specify the patient: `subject_id` is unique to a patient, `hadm_id` is unique to a patient hospital stay and `stay_id` is unique to a patient ward stay. More information about these identifiers is [available here](/basics/identifiers).

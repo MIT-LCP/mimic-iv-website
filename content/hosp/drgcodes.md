@@ -44,6 +44,8 @@ The codes correspond to the primary reason for a patient's stay at the hospital.
 
 ## `subject_id`
 
+`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
+
 ## `hadm_id`
 
 ## `drg_type`

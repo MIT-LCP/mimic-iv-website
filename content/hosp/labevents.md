@@ -10,7 +10,10 @@ toc = false
 
 +++
 
-# The  table
+# The LABEVENTS table
+
+The LABEVENTS table stores the results of all laboratory measurements made for a single patient.
+These include hematology measurements, blood gases, chemistry panels, and less common tests such as genetic assays.
 
 **Table source:** Hospital database.
 
@@ -47,7 +50,6 @@ Name | Postgres data type
 `flag` | VARCHAR(10)
 `priority` | VARCHAR(7)
 
-# Detailed Description
+## `subject_id`
 
-The LABEVENTS table stores the results of all laboratory measurements made for a single patient.
-These include hematology measurements, blood gases, chemistry panels, and less common tests such as genetic assays.
+`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.

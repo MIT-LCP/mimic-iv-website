@@ -10,7 +10,18 @@ toc = false
 
 +++
 
-# The  table
+# The MICROBIOLOGYEVENTS table
+
+Microbiology tests are a common procedure to check for infectious growth and to assess which antibiotic treatments are most effective.
+
+The table is best explained with a demonstrative example. If a blood culture is requested for a patient, then a blood sample will be taken and sent to the microbiology lab.
+The time at which this blood sample is taken is the `charttime`.
+The `spec_type_desc` will indicate that this is a blood sample.
+Bacteria will be cultured on the blood sample, and the remaining columns depend on the outcome of this growth:
+
+* If no growth is found, the remaining columns will be NULL
+* If bacteria is found, then each organism of bacteria will be present in `org_name`, resulting in multiple rows for the single specimen (i.e. multiple rows for the given `spec_type_desc`).
+* If antibiotics are tested on a given bacterial organism, then each antibiotic tested will be present in the `ab_name` column (i.e. multiple rows for the given `org_name` associated with the given `spec_type_desc`). Antibiotic parameters and sensitivities are present in the remaining columns (`dilution_text`, `dilution_comparison`, `dilution_value`, `interpretation`).
 
 **Table source:** Hospital database.
 
@@ -60,15 +71,6 @@ Name | Postgres data type
 `dilution_value` | DOUBLE PRECISION
 `interpretation` | VARCHAR(5)
 
-# Detailed Description
+## `subject_id`
 
-Microbiology tests are a common procedure to check for infectious growth and to assess which antibiotic treatments are most effective.
-
-The table is best explained with a demonstrative example. If a blood culture is requested for a patient, then a blood sample will be taken and sent to the microbiology lab.
-The time at which this blood sample is taken is the `charttime`.
-The `spec_type_desc` will indicate that this is a blood sample.
-Bacteria will be cultured on the blood sample, and the remaining columns depend on the outcome of this growth:
-
-* If no growth is found, the remaining columns will be NULL
-* If bacteria is found, then each organism of bacteria will be present in `org_name`, resulting in multiple rows for the single specimen (i.e. multiple rows for the given `spec_type_desc`).
-* If antibiotics are tested on a given bacterial organism, then each antibiotic tested will be present in the `ab_name` column (i.e. multiple rows for the given `org_name` associated with the given `spec_type_desc`). Antibiotic parameters and sensitivities are present in the remaining columns (`dilution_text`, `dilution_comparison`, `dilution_value`, `interpretation`).
+`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.

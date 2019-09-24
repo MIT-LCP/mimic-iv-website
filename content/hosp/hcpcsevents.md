@@ -40,7 +40,7 @@ Name | Postgres data type
 
 ## `subject_id`
 
-Identifier which is unique to a given patient.
+`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
 
 ## `hadm_id`
 
