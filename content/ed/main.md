@@ -60,6 +60,8 @@ Name | Postgres data type
 
 ## `stay_id`
 
+An identifier which uniquely identifies a single emergency department stay for a single patient.
+
 ## `intime`, `outtime`
 
 The admission datetime (`intime`) and discharge datetime (`outtime`) of the given emergency department stay.
