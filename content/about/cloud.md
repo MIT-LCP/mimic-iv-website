@@ -42,7 +42,7 @@ Google stores data in ``buckets''. Access to these buckets is controlled using t
 
 ### Web browser download
 
-1. Navigate to the bucket: https://console.cloud.google.com/buckets/mimic-iv
+1. Navigate to the bucket: https://console.cloud.google.com/storage/browser/mimic-iv.physionet.org
 2. Ensure you are logged into the correct Google account. Use the top right icon to view and/or change your current activate Google account. We only provide access to the account given to us.
 3. Select each file in turn, and click "Download".
 
@@ -59,19 +59,25 @@ While slightly tedious, there are less than 20 files, and so this process is rea
 
 ```sh
 # core
-gsutil -m cp gs://mimic-data/patients.csv.gz gs://mimic-data/admissions.csv.gz gs://mimic-data/stays.csv.gz gs://mimic-data/services.csv.gz ./
+gsutil -m cp gs://mimic-iv.physionet.org/core/patients.csv.gz gs://mimic-iv.physionet.org/core/admissions.csv.gz gs://mimic-iv.physionet.org/core/stays.csv.gz gs://mimic-iv.physionet.org/core/services.csv.gz ./
 
 # hospital
-gsutil -m cp gs://mimic-data/d_hcpcs.csv.gz gs://mimic-data/d_icd_diagnoses.csv.gz gs://mimic-data/d_icd_procedures.csv.gz gs://mimic-data/d_labitems.csv.gz gs://mimic-data/d_micro.csv.gz gs://mimic-data/diagnoses_icd.csv.gz gs://mimic-data/drgcodes.csv.gz gs://mimic-data/emar.csv.gz gs://mimic-data/emar_detail.csv.gz gs://mimic-data/hcpcsevents.csv.gz gs://mimic-data/labevents.csv.gz gs://mimic-data/microbiologyevents.csv.gz gs://mimic-data/procedures_icd.csv.gz ./
+gsutil -m cp gs://mimic-iv.physionet.org/hosp/d_hcpcs.csv.gz gs://mimic-iv.physionet.org/hosp/d_icd_diagnoses.csv.gz gs://mimic-iv.physionet.org/hosp/d_icd_procedures.csv.gz gs://mimic-iv.physionet.org/hosp/d_labitems.csv.gz gs://mimic-iv.physionet.org/hosp/d_micro.csv.gz gs://mimic-iv.physionet.org/hosp/diagnoses_icd.csv.gz gs://mimic-iv.physionet.org/hosp/drgcodes.csv.gz gs://mimic-iv.physionet.org/hosp/hcpcsevents.csv.gz gs://mimic-iv.physionet.org/hosp/microbiologyevents.csv.gz gs://mimic-iv.physionet.org/hosp/procedures_icd.csv.gz ./
+
+# big hospital tables (>1 GB compressed) that are sharded
+gsutil -m cp gs://mimic-iv.physionet.org/hosp/emar_*.csv.gz gs://mimic-iv.physionet.org/hosp/emar_detail_*.csv.gz gs://mimic-iv.physionet.org/hosp/labevents_*.csv.gz ./
 
 # ICU
-gsutil -m cp gs://mimic-data/chartevents.csv.gz gs://mimic-data/d_items.csv.gz gs://mimic-data/datetimeevents.csv.gz gs://mimic-data/icustays.csv.gz gs://mimic-data/inputevents.csv.gz gs://mimic-data/outputevents.csv.gz gs://mimic-data/procedureevents.csv.gz ./
+gsutil -m cp  gs://mimic-iv.physionet.org/icu/d_items.csv.gz gs://mimic-iv.physionet.org/icu/datetimeevents.csv.gz gs://mimic-iv.physionet.org/icu/icustays.csv.gz  gs://mimic-iv.physionet.org/icu/outputevents.csv.gz gs://mimic-iv.physionet.org/icu/procedureevents.csv.gz ./
+
+# big ICU tables (>1 GB compressed) that are sharded
+gsutil -m cp gs://mimic-iv.physionet.org/icu/chartevents_*.csv.gz gs://mimic-iv.physionet.org/icu/inputevents_*.csv.gz ./
 
 # ED
-gsutil -m cp gs://mimic-data/main.csv.gz gs://mimic-data/medrecon.csv.gz gs://mimic-data/pyxis.csv.gz gs://mimic-data/triage.csv.gz gs://mimic-data/vitalsign.csv.gz gs://mimic-data/vitalsign_hl7.csv.gz ./
+gsutil -m cp gs://mimic-iv.physionet.org/ed/main.csv.gz gs://mimic-iv.physionet.org/ed/medrecon.csv.gz gs://mimic-iv.physionet.org/ed/pyxis.csv.gz gs://mimic-iv.physionet.org/ed/triage.csv.gz gs://mimic-iv.physionet.org/ed/vitalsign.csv.gz gs://mimic-iv.physionet.org/ed/vitalsign_hl7.csv.gz ./
 
 # CXR
-gsutil -m cp gs://physionet-data-mimic-cxr/mimic-cxr-metadata-detail.csv.gz ./
+gsutil -m cp gs://mimic-iv.physionet.org/cxr/cxr/record_list.csv.gz gs://mimic-iv.physionet.org/cxr/cxr/study_list.csv.gz ./
 ```
 
 Note this script copies into the local folder.
