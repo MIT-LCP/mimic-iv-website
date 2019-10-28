@@ -18,7 +18,7 @@ During the final preparation phase access is made available to members of the [C
 
 As data is distributed via Google Cloud Platform (GCP), a valid Google account is required to access the data. Accessing the data is done in three stages:
 
-1. Users must become a credentialed user on PhysioNet with access to MIMIC-III. This process involves completing a training course in human subjects research and signing of a data use agreement. Details of this process [are available online](https://mimic.physiont.org/gettingstarted/access).
+1. Users must become a credentialed user on PhysioNet with access to MIMIC-III. This process involves completing a training course in human subjects research and signing of a data use agreement. Details of this process [are available online](https://mimic.physionet.org/gettingstarted/access).
 2. Users must add a valid Google account e-mail to their credentialed PhysioNet user account.
 3. Users must contact mimic-support@physionet.org and request access to MIMIC-IV. The e-mail should state the name of the Consortium organization of which they are a member, and the PhysioNet account to which they would like access provisioned. The e-mail should be sent from an address associated with the Consortium organization, or have a member of the Consortium organization copied to verify your affiliation.
 
