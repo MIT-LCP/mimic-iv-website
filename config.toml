@@ -30,7 +30,7 @@ googleAnalytics = ""
 
 [params.segment1]
     title = "MIMIC-IV"
-    text = "The MIMIC-IV Database is a large publicly available dataset of ICU and ED data."
+    text = "MIMIC-IV is a large ED and ICU database."
     icon = "icon-circlestar"
 
 [params.segment2]
