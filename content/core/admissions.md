@@ -53,7 +53,7 @@ HOSPITAL\_EXPIRE_FLAG | SMALLINT
 
 # Detailed description
 
-The `ADMISSIONS` table defines all `HADM_ID` present in the database, covering an admission period between 1 January 2012 and 31 December 2018.
+The `ADMISSIONS` table defines all `HADM_ID` present in the database, covering an admission period between 1 January 2008 and 31 December 2018.
 
 ## `SUBJECT_ID`, `HADM_ID`
 
