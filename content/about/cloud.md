@@ -26,7 +26,7 @@ BigQuery is available at the following link: https://console.cloud.google.com/bi
 
 ### BigQuery Datasets
 
-BigQuery has a hierarchy as follows: each project can contain one or more datasets, and each dataset can contain one or more tables. The rough equivalent for a project is a relational database, and the equivalent of a dataset is a schema. Unlike MIMIC-III, MIMIC-IV has four datasets (schemas). This allows users to immediately know the source of the data, and simplifies understanding of the database structure.
+BigQuery has a hierarchy as follows: each project can contain one or more datasets, and each dataset can contain one or more tables. The rough equivalent for a project is a relational database, and the equivalent of a dataset is a schema. Unlike MIMIC-III, MIMIC-IV has multiple datasets (schemas). This allows users to immediately know the source of the data, and simplifies understanding of the database structure.
 
 A tutorial on using BigQuery [is available online](/about/bigquery).
 
