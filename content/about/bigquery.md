@@ -24,20 +24,18 @@ It is written with the *old* BigQuery interface, and focuses on the MIMIC-III/eI
     *   If you do not have a Google account, you can create one at
         http://www.gmail.com. You need to add this e-mail to your PhysioNet account.
     *   Access to MIMIC-III/eICU-CRD can be done via the their PhysioNet project pages.
+    *   All users have access to the demo datasets.
 
-## Executing Queries
+PhysioNet does not cover the cost of queries against `physionet-data`
+(though this cost is mostly trivial). In order to run queries, you will need
+to configure a *project* for your account, which BigQuery can then use to bill
+for your usage of the cloud platform. For more information on GCP projects,
+see [the documentation on creating and managing projects.](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
 
-The data-hosting project `physionet-data` has read-only access, as a result, you
-need to set a default project that you have BigQuery access to. A shared project
-should be created by the organizers, visit
-**https://bigquery.cloud.google.com/welcome/** and search for the project to
-access the BigQuery web interface, all the queries in this tutorial will be run
-through this web interface.
-
-Note that during the datathon, all participants will be divided into teams and a
-Google Cloud project will be created for each team specifically. That project
-would be the preferred project to use. For now we'll stick with the shared
-project for the purpose of the tutorial.
+All PhysioNet data is hosted on the `physionet-data` project. You will only have
+read-access privileges to these datasets. As a result, if you would like to save
+the results of any queries, you will need to save them to a dataset created
+on your own project.
 
 # TLDR
 
