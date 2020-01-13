@@ -12,6 +12,8 @@ toc = false
 
 # The VITALSIGN_HL7 table
 
+**This table is not yet populated.**
+
 Patients admitted to the emergency department may be monitored by telemetry.
 Minute-by-minute vital signs for telemetry are communicated to a central server in the hospital, and these vital signs are recorded here.
 However, vital signs are only communicated with patient identifiers manually input into the bedside monitors, a process which is not routine practice.

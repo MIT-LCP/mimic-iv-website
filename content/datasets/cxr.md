@@ -14,4 +14,4 @@ toc = false
 
 The following tables are in `mimic_cxr`:
 
-* [images](/cxr/images)
+* [cxr](/cxr/cxr-record-list)
