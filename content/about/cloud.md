@@ -34,7 +34,13 @@ A tutorial on using BigQuery [is available online](/about/bigquery).
 Once you have access to MIMIC-IV, we highly recommend you read the [database introduction](/mimic-iv). 
 -->
 
-Subsequent table by table documentation is [available online](/tables/overview) (TBD).
+Subsequent table by table documentation is available online:
+
+* [core](/datasets/core)
+* [hosp](/datasets/hosp)
+* [icu](/datasets/icu)
+* [ed](/datasets/ed)
+* [cxr](/datasets/cxr)
 
 ## Google Cloud bucket
 
