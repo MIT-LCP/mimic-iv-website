@@ -25,7 +25,9 @@ This distinction between static data and dynamic data is merely a helpful concep
 # Patient identifiers
 
 Patients are identified in the database using three possible identifiers: `subject_id`, `hadm_id`, and `stay_id`.
-Every unique patient is assigned a unique `subject_id`, all unique hospitalizations are assigned a unique `hadm_id`, and finally all unique ward stays are assigned a unique `stay_id`. In this context, a ward is a distinct area of the hospital, and a new `stay_id` is assigned to a patient if the hospital patient tracking system records that they have been moved from one room to another.
+Every unique patient is assigned a unique `subject_id`, all unique hospitalizations are assigned a unique `hadm_id`, and finally all unique ward stays are assigned a unique `transfer_id`. In this context, a ward is a distinct area of the hospital, and a new `transfer_id` is assigned to a patient if the hospital patient tracking system records that they have been moved from one room to another.
+
+However, many patients will move from one specific location to another, but practically their type of care has not changed. A good example is a patient moving bed locations within an ICU: these changes result in the patient having a new `transfer_id`, but the patient never left the ICU and we would consider this as a continuous episode of care. In order to alleviate this issue, we have created a `stay_id`, which is retained across all ward stays of the same type occurring within 24 hours of each other. That is, if a patient leaves and returns to the ICU within 24 hours, they will have the same `stay_id` for the second ICU stay.
 
 ## `subject_id`
 
@@ -35,8 +37,10 @@ The PATIENTS table contains information for each unique `subject_id`. `subject_i
 
 The ADMISSIONS table contains information for each unique `hadm_id`. `hadm_id` is sourced from the hospital, and is an anonymized version of an identifier assigned to each patient hospitalization.
 
+## `transfer_id`
+
+The TRANSFERS table contains information for each unique `transfer_id`. `transfer_id` is an artificially generated identifier which is uniquely assigned to a ward stay for an individual patient.
+
 ## `stay_id`
 
-The TRANSFERS table contains information for each unique `stay_id`. `stay_id` is an artificially generated identifier which is uniquely assigned to a ward stay for an individual patient.
-
-# Example patient stays
+The TRANSFERS table also contains the `stay_id`. This is an artificially generated identifier which groups reasonably contiguous episodes of care.
