@@ -73,8 +73,6 @@ The current version of the database is v0.2. When referencing this version, we r
 - **mimic_ed**: *main*
   - Removed diagnosis from this table (inserted into *diagnosis* above)
 
-The next version of MIMIC-IV will likely make changes to the **mimic_ed** schema.
-
 ### MIMIC-IV v0.1
 
 MIMIC-IV v0.1 was released on 15 August 2019.
