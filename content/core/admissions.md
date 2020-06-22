@@ -10,75 +10,70 @@ toc = false
 
 +++
 
-# The admissions table
+## *admissions*
 
-**Table source:** Hospital database.
+The *admissions* table gives information regarding a patient's admission to the hospital. Since each unique hospital visit for a patient is assigned a unique `hadm_id`, the *admissions* table can be considered as a definition table for `hadm_id`. Information available includes timing information for admission and discharge, demographic information, the source of the admission, and so on.
 
-**Table purpose:** Define a patient's hospital admission, HADM\_ID.
+### Links to
 
-**Number of rows:** 346,380
+* *patients* on `subject_id`
 
-**Links to:**
-
-* PATIENTS on `SUBJECT_ID`
-
-# Brief summary
-
-The ADMISSIONS table gives information regarding a patient's admission to the hospital. Since each unique hospital visit for a patient is assigned a unique `HADM_ID`, the ADMISSIONS table can be considered as a definition table for `HADM_ID`. Information available includes timing information for admission and discharge, demographic information, the source of the admission, and so on.
-
-# Important considerations
+## Important considerations
 
 * The data is sourced from the admission, discharge and transfer database from the hospital (often referred to as 'ADT' data).
-* Organ donor accounts are sometimes created for patients who died in the hospital. These are distinct hospital admissions with very short, sometimes negative lengths of stay. Furthermore, their `DEATHTIME` is frequently the same as the earlier patient admission's `DEATHTIME`.
-* All text data, except for that in the `INSURANCE` column, is stored in upper case.
+* Organ donor accounts are sometimes created for patients who died in the hospital. These are distinct hospital admissions with very short, sometimes negative lengths of stay. Furthermore, their `deathtime` is frequently the same as the earlier patient admission's `deathtime`.
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
-SUBJECT\_ID | INT
-HADM\_ID | INT
-ADMITTIME | TIMESTAMP(0)
-DISCHTIME | TIMESTAMP(0)
-DEATHTIME | TIMESTAMP(0)
-ADMISSION\_TYPE | VARCHAR(40)
-ADMISSION\_LOCATION | VARCHAR(60)
-DISCHARGE\_LOCATION | VARCHAR(60)
-INSURANCE | VARCHAR(255)
-LANGUAGE | VARCHAR(10)
-ETHNICITY | VARCHAR(80)
-EDREGTIME | TIMESTAMP(0)
-EDOUTTIME | TIMESTAMP(0)
-HOSPITAL\_EXPIRE_FLAG | SMALLINT
+`subject_id` | INTEGER
+`hadm_id` | INTEGER
+`admittime` | TIMESTAMP(0)
+`dischtime` | TIMESTAMP(0)
+`deathtime` | TIMESTAMP(0)
+`admission_type` | VARCHAR(40)
+`admission_location` | VARCHAR(60)
+`discharge_location` | VARCHAR(60)
+`insurance` | VARCHAR(255)
+`language` | VARCHAR(10)
+`marital_status` | VARCHAR(80)
+`ethnicity` | VARCHAR(80)
+`edregtime` | TIMESTAMP(0)
+`edouttime` | TIMESTAMP(0)
+`hospital_expire_flag` | SMALLINT
 
-# Detailed description
+## Detailed description
 
-The `ADMISSIONS` table defines all `HADM_ID` present in the database, covering an admission period between 1 January 2008 and 31 December 2018.
+The *admissions* table defines all hospitalizations in the database. Hospitalizations are assigned a unique random integer known as the `hadm_id`.
 
-## `SUBJECT_ID`, `HADM_ID`
+### `subject_id`, `hadm_id`
 
-Each row of this table contains a unique `HADM_ID`, which represents a single patient's admission to the hospital. `HADM_ID` ranges from 2000000 - 2999999. It is possible for this table to have duplicate `SUBJECT_ID`, indicating that a single patient had multiple admissions to the hospital. The ADMISSIONS table can be linked to the PATIENTS table using `SUBJECT_ID`.
+Each row of this table contains a unique `hadm_id`, which represents a single patient's admission to the hospital. `hadm_id` ranges from 2000000 - 2999999. It is possible for this table to have duplicate `subject_id`, indicating that a single patient had multiple admissions to the hospital. The ADMISSIONS table can be linked to the PATIENTS table using `subject_id`.
 
-## `ADMITTIME`, `DISCHTIME`, `DEATHTIME`
+### `admittime`, `dischtime`, `deathtime`
 
-`ADMITTIME` provides the date and time the patient was admitted to the hospital, while `DISCHTIME` provides the date and time the patient was discharged from the hospital. If applicable, `DEATHTIME` provides the time of in-hospital death for the patient. Note that `DEATHTIME` is only present if the patient died in-hospital, and is almost always the same as the patient's `DISCHTIME`. However, there can be some discrepancies due to typographical errors.
+`admittime` provides the date and time the patient was admitted to the hospital, while `dischtime` provides the date and time the patient was discharged from the hospital. If applicable, `deathtime` provides the time of in-hospital death for the patient. Note that `deathtime` is only present if the patient died in-hospital, and is almost always the same as the patient's `dischtime`. However, there can be some discrepancies due to typographical errors.
 
-## `ADMISSION_TYPE`
+### `admission_type`
 
-`ADMISSION_TYPE` describes the type of the admission.
+`admission_type` is useful for classifying the urgency of the admission. There are 9 possibilities: 'AMBULATORY OBSERVATION', 'DIRECT EMER.', 'DIRECT OBSERVATION', 'ELECTIVE', 'EU OBSERVATION', 'EW EMER.', 'OBSERVATION ADMIT', 'SURGICAL SAME DAY ADMISSION', 'URGENT'.
 
-## `ADMISSION_LOCATION`
+### `admission_location`, `discharge_location`
 
-`ADMISSION_LOCATION` provides information about the previous location of the patient prior to arriving at the hospital.
+`admission_location` provides information about the location of the patient prior to arriving at the hospital. Note that as the emergency room is technically a clinic, patients who are admitted via the emergency room usually have it as their admission location.
 
-## `INSURANCE`, `LANGUAGE`, `ETHNICITY`
+Similarly, `discharge_location` is the disposition of the patient after they are discharged from the hospital.
 
-The `INSURANCE`, `LANGUAGE`, `ETHNICITY` columns describe patient demographics. These columns occur in the ADMISSIONS table as they are originally sourced from the admission, discharge, and transfers (ADT) data from the hospital database.
+### `insurance`, `language`, `marital_status`, `ethnicity`
 
-## `EDREGTIME`, `EDOUTTIME`
+The `insurance`, `language`, `marital_status`, and `ethnicity` columns provide information about patient demographics for the given hospitalization.
+Note that as this data is documented for each hospital admission, they may change from stay to stay.
 
-Time that the patient was registered and discharged from the emergency department.
+### `edregtime`, `edouttime`
 
-## `HOSPITAL_EXPIRE_FLAG`
+The date and time at which the patient was registered and discharged from the emergency department.
 
-This indicates whether the patient died within the given hospitalization. `1` indicates death in the hospital, and `0` indicates survival to hospital discharge.
+### `hospital_expire_flag`
+
+This is a binary flag which indicates whether the patient died within the given hospitalization. `1` indicates death in the hospital, and `0` indicates survival to hospital discharge.

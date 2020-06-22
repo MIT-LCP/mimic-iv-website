@@ -10,52 +10,42 @@ toc = false
 
 +++
 
-# The  table
+## *procedures_icd*
 
-**Table source:** Hospital database.
+During routine hospital care, patients are billed by the *hospital* for procedures they undergo.
+This table contains a record of all procedures a patient was billed for during their hospital stay using the ICD-9 and ICD-10 ontologies.
 
-**Table purpose:** 
+## Important considerations
 
-**Number of rows:** 
+- Procedures during the hospital stay can be billed (1) by the hospital or (2) by the provider. This table contains only procedures billed by the hospital.
 
-**Links to:**
-
-<!--
-
-# Important considerations
-
--->
-
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
 `subject_id` | INTEGER
 `hadm_id` | INTEGER
 `seq_num` | INTEGER
-`icd9_code` | CHAR(5)
-`icd10_code` | CHAR(7)
+`icd_code` | CHAR(7)
+`icd_version` | INTEGER
 
-# Detailed Description
+### `subject_id`
 
-During routine hospital care, patients are billed by the *hospital* for procedures they undergo.
-This table contains a record of all procedures a patient was billed for during their hospital stay using the ICD-9 and ICD-10 ontologies.
+{{% include "/static/include/subject_id.md" %}}
 
-# Important considerations
+### `hadm_id`
 
-* Procedures during the hospital stay can be billed (1) by the hospital or (2) by the provider. This table contains only procedures billed by the hospital.
-
-## `subject_id`
-
-`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
-
-## `hadm_id`
+{{% include "/static/include/hadm_id.md" %}}
 
 ## `seq_num`
 
 The order in which the procedures occurred within the hospital stay.
 
-## `icd9_code`, `icd10_code`
+### `icd_code`, `icd_version`
 
-As the data overlaps with the transition period between ICD-9 and ICD-10, patients may be billed using ICD-9 or ICD-10 codes depending on their year of admission.
-Only one type of code will be present for an individual hospitalization.
+`icd_code` is the International Coding Definitions (ICD) code.
+
+There are two versions for this coding system: version 9 (ICD-9) and version 10 (ICD-10). These can be differentiated using the `icd_version` column.
+In general, ICD-10 codes are more detailed, though code mappings (or "cross-walks") exist which convert ICD-9 codes to ICD-10 codes.
+
+Both ICD-9 and ICD-10 codes are often presented with a decimal. This decimal is not required for interpretation of an ICD code; i.e. the `icd_code` of '0010' is equivalent to '001.0'.

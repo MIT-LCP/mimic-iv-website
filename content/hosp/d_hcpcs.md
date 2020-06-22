@@ -10,15 +10,11 @@ toc = false
 
 +++
 
-# The d_hcpcs table
+## The d_hcpcs table
 
-**Table source:** Hospital database.
+The D_HCPCS table is used to acquire human readable definitions for the codes used in the HCPCSEVENTS table. The concepts primarily correspond to hospital billing.
 
-**Table purpose:** Definitions for items in the HCPCSEVENTS table.
-
-**Number of rows:** 
-
-**Links to:**
+### Links to
 
 * HCPCSEVENTS on `code`
 
@@ -28,7 +24,7 @@ toc = false
 
 -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
@@ -37,18 +33,16 @@ Name | Postgres data type
 `long_description` | TEXT
 `short_description` | VARCHAR(180)
 
-# Detailed Description
+## Detailed description
 
-The D_HCPCS table is used to acquire human readable definitions for the codes used in the HCPCSEVENTS table. The concepts primarily correspond to hospital billing.
-
-## `code`
+### `code`
 
 A five character code which uniquely represents the event.
 
-## `category`
+### `category`
 
 Broad classification of the code.
 
-## `long_description`, `short_description
+### `long_description`, `short_description`
 
 Textual descriptions of the `code` listed for the given row.

@@ -14,13 +14,13 @@ toc = false
 
 We are primarily sharing MIMIC-IV via BigQuery. We highly recommend using BigQuery as we plan to roll out updates to it over the coming months, and staying on the platform will greatly simplify use of the data. If absolutely necessary, it is possible to download the data from a Google cloud bucket; instructions are provided at the end of the document.
 
-# Sources of data
+## Sources of data
 
-## BigQuery
+### BigQuery
 
 BigQuery is a columnar, distributed relational database management system. BigQuery accesses only the columns specified in the query, making it ideal for data analysis workflows. [Read more about BigQuery on Google.](https://cloud.google.com/bigquery/)
 
-BigQuery is available at the following link: https://console.cloud.google.com/bigquery
+BigQuery is available [via the web browser](https://console.cloud.google.com/bigquery).
 
 ### Adding physionet-data
 

@@ -10,59 +10,48 @@ toc = false
 
 +++
 
-# The transfers table
+## *transfers*
 
-**Table source:** Hospital database.
+Physical locations for patients throughout their hospital stay.
 
-**Table purpose:** Physical locations for patients throughout their hospital stay.
+### Links to
 
-**Number of rows:** 1,530,887
+* *patients* on `subject_id`
+* *admissions* on `hadm_id`
 
-**Links to:**
+## Important considerations
 
-* PATIENTS on `SUBJECT_ID`
-* ADMISSIONS on `HADM_ID`
-* ICUSTAYS on `STAY_ID`
+* The `icustays` table is derived from this table.
 
-# Important considerations
-
-* The ICUSTAYS table is derived from this table.
-
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
-SUBJECT\_ID | INT
-HADM\_ID | INT
-STAY\_ID | INT
-TRANSFER\_ID | INT
-EVENTTYPE | VARCHAR(10)
-INTIME | TIMESTAMP(0)
-CAREUNIT | VARCHAR(255)
-OUTTIME | TIMESTAMP(0)
-LOS | INT
+`subject_id` | INTEGER
+`hadm_id` | INTEGER
+`stay_id` | INTEGER
+`transfer_id` | INTEGER
+`eventtype` | VARCHAR(10)
+`careunit` | VARCHAR(255)
+`intime` | TIMESTAMP(0)
+`outtime` | TIMESTAMP(0)
 
+## Detailed Description
 
-# Detailed Description
+## `subject_id`, `hadm_id`, `transfer_id`
 
-## `SUBJECT_ID`, `HADM_ID`, `STAY_ID`, `TRANSFER_ID`
+Identifiers which specify the patient: `subject_id` is unique to a patient, `hadm_id` is unique to a patient hospital stay, `stay_id` is unique to a patient stay in a hospital unit, `transfer_id` is unique to a patient physical location.
 
-Identifiers which specify the patient: `SUBJECT_ID` is unique to a patient, `HADM_ID` is unique to a patient hospital stay, `STAY_ID` is unique to a patient stay in a hospital unit, `TRANSFER_ID` is unique to a patient physical location.
+## `eventtype`
 
-## `EVENTTYPE`
+`eventtype` describes what transfer event occurred: 'admit' for an admission, 'transfer' for an intra-hospital transfer and 'discharge' for a discharge from the hospital.
 
-`EVENTTYPE` describes what transfer event occurred: 'admit' for an admission, 'transfer' for an intra-hospital transfer and 'discharge' for a discharge from the hospital.
+## `careunit`
 
-## `CAREUNIT`
+`careunit` contains the care unit in which the patient currently resides.
 
-`CAREUNIT` contains the care unit in which the patient currently resides. 
+The `intime` and `outtime` of the transfer event correspond to the `careunit`.
 
-The `INTIME` and `OUTTIME` of the transfer event correspond to the `CAREUNIT`.
+## `intime`, `outtime`
 
-## `INTIME`, `OUTTIME`
-
-`INTIME` provides the date and time the patient was transferred into the current care unit from the previous care unit. `OUTTIME` provides the date and time the patient was transferred out of the current physical location.
-
-## `LOS`
-
-`LOS` is the length of stay for the patient for the current physical location.
+`intime` provides the date and time the patient was transferred into the current care unit (`careunit`) from the previous care unit. `outtime` provides the date and time the patient was transferred out of the current physical location.

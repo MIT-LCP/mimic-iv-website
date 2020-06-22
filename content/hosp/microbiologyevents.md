@@ -1,6 +1,6 @@
 +++
-title = "Microbiologyevents"
-linktitle = "microbiologyevents"
+title = "*microbiologyevents*"
+linktitle = "*microbiologyevents*"
 weight = 1
 toc = false
 
@@ -10,7 +10,7 @@ toc = false
 
 +++
 
-# The MICROBIOLOGYEVENTS table
+## *microbiologyevents*
 
 Microbiology tests are a common procedure to check for infectious growth and to assess which antibiotic treatments are most effective.
 
@@ -23,18 +23,12 @@ Bacteria will be cultured on the blood sample, and the remaining columns depend 
 * If bacteria is found, then each organism of bacteria will be present in `org_name`, resulting in multiple rows for the single specimen (i.e. multiple rows for the given `spec_type_desc`).
 * If antibiotics are tested on a given bacterial organism, then each antibiotic tested will be present in the `ab_name` column (i.e. multiple rows for the given `org_name` associated with the given `spec_type_desc`). Antibiotic parameters and sensitivities are present in the remaining columns (`dilution_text`, `dilution_comparison`, `dilution_value`, `interpretation`).
 
-**Table source:** Hospital database.
+## Links to
 
-**Table purpose:** Microbiological investigations on specimens derived from patients, e.g. blood cultures, urine cultures, etc.
-
-**Number of rows:** 
-
-**Links to:**
-
-* D_MICRO on `spec_itemid`
-* D_MICRO on `test_itemid`
-* D_MICRO on `org_itemid`
-* D_MICRO on `ab_itemid`
+* d_micro on `spec_itemid`
+* d_micro on `test_itemid`
+* d_micro on `org_itemid`
+* d_micro on `ab_itemid`
 
 <!--
 
@@ -42,7 +36,7 @@ Bacteria will be cultured on the blood sample, and the remaining columns depend 
 
 -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
@@ -71,6 +65,10 @@ Name | Postgres data type
 `dilution_value` | DOUBLE PRECISION
 `interpretation` | VARCHAR(5)
 
-## `subject_id`
+### `subject_id`
 
-`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
+{{% include "/static/include/subject_id.md" %}}
+
+### `hadm_id`
+
+{{% include "/static/include/hadm_id.md" %}}

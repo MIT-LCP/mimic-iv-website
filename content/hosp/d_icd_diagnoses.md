@@ -11,40 +11,39 @@ toc = false
 +++
 
 
-# The d_icd_diagnoses table
+## The d_icd_diagnoses table
 
-**Table source:** Online sources.
+This table defines International Classification of Diseases (ICD) Version 9 and 10 codes for **diagnoses**. These codes are assigned at the end of the patient's stay and are used by the hospital to bill for care provided.
 
-**Table purpose:** Definition table for ICD diagnoses.
+### Links to
 
-**Number of rows:** 
-
-**Links to:**
-
-* DIAGNOSES_ICD ON `ICD9_CODE`
-* DIAGNOSES_ICD ON `ICD10_CODE`
-
-# Brief summary
-
-This table defines International Classification of Diseases Version 9 (ICD-9) codes for **diagnoses**. These codes are assigned at the end of the patient's stay and are used by the hospital to bill for care provided.
+* *diagnoses_icd* ON `icd_code`
 
 <!-- # Important considerations -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
-ICD9\_CODE | VARCHAR(10)
-ICD10\_CODE | VARCHAR(10)
-SHORT\_TITLE | VARCHAR(50)
-LONG\_TITLE | VARCHAR(300)
+`icd_code` | VARCHAR(10)
+`icd_version` | INTEGER
+`long_title`  | VARCHAR(300)
 
-# Detailed Description
+## Detailed Description
 
-## `ICD9_CODE`, `ICD10_CODE`
+### `icd_code`, `icd_version`
 
-`ICD9_CODE` is the International Coding Definitions Version 9 (ICD-9) code, and `ICD10_CODE` is version 10. Each code corresponds to a single diagnostic concept.
+`icd_code` is the International Coding Definitions (ICD) code.
 
-## `SHORT_TITLE`, `LONG_TITLE`
+There are two versions for this coding system: version 9 (ICD-9) and version 10 (ICD-10). These can be differentiated using the `icd_version` column.
+In general, ICD-10 codes are more detailed, though code mappings (or "cross-walks") exist which convert ICD-9 codes to ICD-10 codes.
 
-The title fields provide a brief definition for the given diagnosis code in `ICD9_CODE`.
+Both ICD-9 and ICD-10 codes are often presented with a decimal. This decimal is not required for interpretation of an ICD code; i.e. the `icd_code` of '0010' is equivalent to '001.0'.
+
+ICD-9 and ICD-10 codes have distinct formats: ICD-9 codes are 5 character long strings which are entirely numeric (with the exception of codes prefixed with "E" or "V" which are used for external causes of injury or supplemental classification). Importantly, ICD-9 codes are retained as strings in the database as the leading 0s in codes are meaningful.
+
+ICD-10 codes are 3-7 characters long and always prefixed by a letter followed by a set of numeric values.
+
+### `long_title`
+
+The `long_title` provides the meaning of the ICD code. For example, the ICD-9 code 0010 has `long_title` "Cholera due to vibrio cholerae".

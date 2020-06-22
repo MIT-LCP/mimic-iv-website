@@ -10,39 +10,37 @@ toc = false
 
 +++
 
-# The D_ICD_PROCEDURES table
+## The D_ICD_PROCEDURES table
 
-**Table source:** Online sources.
+This table defines International Classification of Diseases (ICD) codes for **procedures**. These codes are assigned at the end of the patient's stay and are used by the hospital to bill for care provided. They can further be used to identify if certain procedures have been performed (e.g. surgery).
 
-**Table purpose:** Definition table for ICD procedures.
+### Links to
 
-**Number of rows:** 82,763
+* procedures_icd on `icd_code`
 
-**Links to:**
-
-* PROCEDURES_ICD on `ICD9_CODE`
-* PROCEDURES_ICD on `ICD10_CODE`
-
-# Brief summary
-
-This table defines International Classification of Diseases Version 9 (ICD-9) codes for **procedures**. These codes are assigned at the end of the patient's stay and are used by the hospital to bill for care provided. They can further be used to identify if certain procedures have been performed (e.g. surgery).
+## Brief summary
 
 <!-- # Important considerations -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
-ICD9\_CODE | VARCHAR(10)
-SHORT\_TITLE | VARCHAR(50)
-LONG\_TITLE | VARCHAR(300)
+`icd_code` | VARCHAR(10)
+`icd_version` | INTEGER
+`long_title` | VARCHAR(300)
 
-# Detailed Description
+## Detailed Description
 
-## `ICD9_CODE`, `ICD10_CODE`
+### `icd_code`, `icd_version`
 
-`ICD9_CODE` is the International Coding Definitions Version 9 (ICD-9) code, and `ICD10_CODE` is version 10. Each code corresponds to a single procedural concept.
+`icd_code` is the International Coding Definitions (ICD) code.
 
-## `SHORT_TITLE`, `LONG_TITLE`
+There are two versions for this coding system: version 9 (ICD-9) and version 10 (ICD-10). These can be differentiated using the `icd_version` column.
+In general, ICD-10 codes are more detailed, though code mappings (or "cross-walks") exist which convert ICD-9 codes to ICD-10 codes.
 
-The title fields provide a brief definition for the given procedure code in `ICD9_CODE`.
+Both ICD-9 and ICD-10 codes are often presented with a decimal. This decimal is not required for interpretation of an ICD code; i.e. the `icd_code` of '0010' is equivalent to '001.0'.
+
+## `long_title`
+
+The title fields provide a brief definition for the given procedure code in ``.

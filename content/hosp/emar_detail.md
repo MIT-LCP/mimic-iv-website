@@ -10,20 +10,15 @@ toc = false
 
 +++
 
-# The EMAR_DETAIL table
+## *emar_detail*
 
-The EMAR_DETAIL table contains information for each medicine administration made in the EMAR table.
+The *emar_detail* table contains information for each medicine administration made in the EMAR table.
 Information includes the associated pharmacy order, the dose due, the dose given, and many other parameters associated with the medical administration.
 
-**Table source:** Hospital database.
+## Links to
 
-**Table purpose:** Provide informtion about medical administrations made for patients while in the hospital.
-
-**Number of rows:** 
-
-**Links to:**
-
-* EMAR on `mar_num`
+* *emar* on `emar_id`
+* *pharmacy* on `pharmacy_id`
 
 <!--
 
@@ -31,17 +26,17 @@ Information includes the associated pharmacy order, the dose due, the dose given
 
 -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
 `subject_id` | INTEGER NOT NULL
-`mar_num` | SMALLINT NOT NULL
+`emar_id` | VARCHAR(25) NOT NULL
+`emar_seq` | INTEGER NOT NULL
 `parent_field_ordinal` | NUMERIC(5, 3)
 `administration_types` | VARCHAR(50)
-`pharmacy_order_id` | INTEGER
-`pharmacy_order_note` | VARCHAR(20)
-`Barcode_Type` | VARCHAR(4)
+`pharmacy_id` | INTEGER
+`barcode_type` | VARCHAR(4)
 `Reason_for_No_Barcode` | TEXT
 `Complete_Dose_Not_Given` | VARCHAR(5)
 `Dose_Due` | VARCHAR(50)
@@ -64,18 +59,32 @@ Name | Postgres data type
 `Completion_Interval` | VARCHAR(30)
 `New_IV_Bag_Hung` | VARCHAR(1)
 `Continued_infusion_in_other_location` | VARCHAR(1)
-`Reason_for_Unscheduled_Stop_or_Removal` | TEXT
 `Restart_Interval` | VARCHAR(30)
 `Side` | VARCHAR(10)
 `Site` | VARCHAR(255)
 `non_formulary_visual_verification` | VARCHAR(1)
 
-# Detailed Description
+### `subject_id`
 
-## `subject_id`
+{{% include "/static/include/subject_id.md" %}}
 
-`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
+### `emar_id`, `emar_seq`
 
-## `parent_field_ordinal`
+Identifiers for the eMAR table. `emar_id` is a unique identifier for each order made in eMAR. `emar_seq` is a consecutive integer which numbers eMAR orders chronologically. `emar_id` is composed of `subject_id` and `emar_seq` in the following pattern: '`subject_id`-`emar_seq`'.
 
-parent field delineates multiple adm for the same eMar event, e.g. multiple formulary doses for the full dose.
+### `parent_field_ordinal`
+
+`parent_field_ordinal` delineates multiple administrations for the same eMar event, e.g. multiple formulary doses for the full dose. As eMAR requires the administrating provider to scan a barcode for *each* formulary provided to the patient, it is often the case that multiple rows in *emar_detail* correspond to a single row in *emar* (e.g. multiple pills are administered which add up to the desired dose). There is one row per eMAR order with a NULL `parent_field_ordinal`: this row usually contains the desired dose for the administration. Afterward, if there are N formulary doses, `parent_field_ordinal` will take values '1.1', '1.2', ..., '1.N'. The most common case occurs when there is only one formulary dose per medication. In this case the `emar_id` will have two rows in the *emar_detail* table: one with a NULL value for `parent_field_ordinal` (usually providing the dose due), and one row with a value of '1.1' for `parent_field_ordinal` (usually providing the actual dose administered).
+
+### `administration_types`
+
+The type of administration, including 'IV Bolus', 'IV Infusion', 'Medication Infusion', 'Transdermal Patch', and so on.
+
+### `pharmacy_id`
+
+An identifier which allows linking the eMAR order to pharmacy information provided in the *pharmacy* table. Note: rarely the same `emar_id` may have multiple distinct `pharmacy_id` across rows in the *emar_detail* table.
+
+### Remaining columns
+
+The remaining columns provide information about the delivery of the formulary dose of the administered medication.
+

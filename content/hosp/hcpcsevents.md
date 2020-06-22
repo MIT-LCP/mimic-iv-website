@@ -10,15 +10,11 @@ toc = false
 
 +++
 
-# The  table
+## *hcpcsevents*
 
-**Table source:** Hospital database.
+## Links to
 
-**Table purpose:** 
-
-**Number of rows:** 
-
-**Links to:**
+* *d_hcpcs* on hcpcs_cd
 
 <!--
 
@@ -26,35 +22,33 @@ toc = false
 
 -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
 `subject_id` | INTEGER
 `hadm_id` | INTEGER
 `hcpcs_cd` | CHAR(5)
-`ticket_id_seq` | INTEGER
+`seq_num` | INTEGER
 `short_description` | TEXT
 
-# Detailed Description
+### `subject_id`
 
-## `subject_id`
+{{% include "/static/include/subject_id.md" %}}
 
-`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
+### `hadm_id`
 
-## `hadm_id`
+{{% include "/static/include/hadm_id.md" %}}
 
-Identifier which is unique to a patient hospitalization.
-
-## `hcpcs_cd`
+### `hcpcs_cd`
 
 A five character code which uniquely represents the event.
 Link this to `code` in D_HCPCS for a longer description of the code.
 
-## `ticket_id_seq`
+### `seq_num`
 
 An assigned order to HCPCS codes for an individual hospitalization. This order sometimes conveys meaning, e.g. sometimes higher priority, but this is not guaranteed across all codes.
 
-## `short_description`
+### `short_description`
 
 A short textual descriptions of the `hcpcs_cd` listed for the given row.

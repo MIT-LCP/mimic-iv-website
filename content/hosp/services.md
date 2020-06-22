@@ -6,26 +6,13 @@ toc = false
 
 [menu]
   [menu.main]
-    parent = "Core Tables"
+    parent = "Hosp Tables"
 
 +++
 
-# The services table
+## *services*
 
-**Table source:** Hospital database.
-
-**Table purpose:** Lists services that a patient was admitted/transferred under.
-
-**Number of rows:** 584,929
-
-**Links to:**
-
-* PATIENTS on `SUBJECT_ID`
-* ADMISSIONS on `HADM_ID`
-
-# Brief summary
-
-The services table describes the service that a patient was admitted under. While a patient can be physicially located at a given ICU type (say MICU), they are not necessarily being cared for by the team which staffs the MICU. This can happen due to a number of reasons, including bed shortage. The SERVICES table should be used if interested in identifying the type of service a patient is receiving in the hospital. For example, if interested in identifying surgical patients, the recommended method is searching for patients admitted under a surgical service.
+The *services* table describes the service that a patient was admitted under. While a patient can be physicially located at a given ICU type (say MICU), they are not necessarily being cared for by the team which staffs the MICU. This can happen due to a number of reasons, including bed shortage. The *services* table should be used if interested in identifying the type of service a patient is receiving in the hospital. For example, if interested in identifying surgical patients, the recommended method is searching for patients admitted under a surgical service.
 
 Each service is listed in the table as an abbreviation - this is exactly how the data is stored in the hospital database. For user convenience, we have provided a description of each service type.
 
@@ -52,28 +39,35 @@ TRAUM | Trauma - injury or damage caused by physical harm from an external sourc
 TSURG | Thoracic Surgical - surgery on the thorax, located between the neck and the abdomen
 VSURG | Vascular Surgical - surgery relating to the circulatory system
 
+## Links to
+
+* patients on `subject_id`
+* admissions on `hadm_id`
+
 <!-- # Important considerations -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
-SUBJECT\_ID | INT
-HADM\_ID | INT
-TRANSFERTIME | TIMESTAMP(0)
-PREV\_SERVICE | VARCHAR(20)
-CURR\_SERVICE | VARCHAR(20)
+`subject_id` | INT
+`hadm_id` | INT
+`transfertime` | TIMESTAMP(0)
+`prev_service` | VARCHAR(20)
+`curr_service` | VARCHAR(20)
 
-# Detailed Description
+### `subject_id`
 
-## `SUBJECT_ID`, `HADM_ID`
+{{% include "/static/include/subject_id.md" %}}
 
-Identifiers which specify the patient: `SUBJECT_ID` is unique to a patient and `HADM_ID` is unique to a patient hospital stay.
+### `hadm_id`
 
-## `TRANSFERTIME`
+{{% include "/static/include/hadm_id.md" %}}
 
-`TRANSFERTIME` is the time at which the patient moved from the `PREV_SERVICE` (if present) to the `CURR_SERVICE`.
+## `transfertime`
 
-## `PREV_SERVICE`, `CURR_SERVICE`
+`transfertime` is the time at which the patient moved from the `prev_service` (if present) to the `curr_service`.
 
-`PREV_SERVICE` and `CURR_SERVICE` are the previous and current service that the patient resides under.
+## `prev_service`, `curr_service`
+
+`prev_service` and `curr_service` are the previous and current service that the patient resides under.

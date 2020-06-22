@@ -11,9 +11,10 @@ toc = false
 
 +++
 
-# MIMIC-IV
+## MIMIC-IV
 
-MIMIC-IV is an update to MIMIC-III, containing hospitalized patients from 2008 - 2018 inclusive. The data is separated into ``modules'' to reflect the non-overlapping nature and distinct origins of the individual modules.
+MIMIC-IV is an update to MIMIC-III, containing hospitalized patients from 2008 - 2019 inclusive.
+The data is separated into ``modules'' to reflect the non-overlapping nature and distinct origins of the individual modules.
 
 There are currently five modules:
 
@@ -25,14 +26,55 @@ There are currently five modules:
 
 All patients across all datasets are in mimic_core. However, not all ICU patients have ED data, not all ICU patients have CXRs, not all ED patients have hospital data, and so on. Within an individual dataset, there are also incomplete tables as certain electronic systems did not exist in the past. For example, eMAR data is only available from 2015 onward. A metadata table is being created to identify all major instances of this behavior.
 
-# Release notes
+## Release notes
 
 This page lists changes implemented in sequential updates to the MIMIC-CXR database. Issues are tracked using a unique issue number, usually of the form #100, #101, etc (this issue number relates to a private 'building' repository).
 
-## Current version
+### Current version
 
-The current version of the database is v0.1. When referencing this version, we recommend using the full title: MIMIC-IV v0.1.
+The current version of the database is v0.2. When referencing this version, we recommend using the full title: MIMIC-IV v0.2.
 
-## MIMIC-IV v0.1
+### MIMIC-IV v0.2
+
+- Updated demographics in the patient table
+  - `anchor_year` -> `anchor_year_group`
+  - `anchor_year_shifted` -> `anchor_year`
+  - See the [patients table](/datasets/core/patients) for detail on these columns
+- *transfers*
+  - Deleted the `los` column
+- *emar*
+  - `mar_id` -> `emar_id`
+    - `emar_id` is now a composite of `subject_id` and `emar_seq`, and has form "subject_id-emar_seq"
+  - `emar_seq` column - a monotonically increasing integer starting with the first eMAR administration
+  - Added `poe_id` and `pharmacy_id` columns for linking to those tables
+- *emar_detail*
+  - `mar_id` -> `emar_id` (changed as above)
+  - Deleted the `mar_detail_id` column
+- *hcpcsevents*
+  - `ticket_id_seq` -> `seq_num`
+- *labevents*
+  - Many previously NULL values are now populated - these were removed originally due to deidentification
+  - Added the `comments` column. This contains deidentified free-text comments with labs. PHI is replaced with three underscores (`___`). If an entire comment is `___`, then the entire comment was scrubbed.
+- *microbiologyevents*
+  - `stay_id` column removed
+  - `spec_id` -> `micro_specimen_id`
+- Added the [*poe*](/hosp/poe) and [*poe_detail*](/hosp/poe_detail) tables
+  - Documentation of provider orders for various treatments and other aspects of patient management
+- Added the [*prescriptions*](/hosp/prescriptions) table
+  - Documentation of medicine prescriptions via the provider order interface
+- Added the [*pharmacy*](/hosp/pharmacy) table
+  - Detailed information regarding prescriptions provided by the pharmacy including formulary dose, route, frequency, dose, and so on.
+- *inputevents*
+  - Fixed an error in the calculation of the *amount* column
+- *icustays*
+  - Re-derived `stay_id` - the new `stay_id` are distinct from the previous version.
+- **mimic_ed**: *diagnosis*
+  - Added [*diagnosis*](/ed/diagnosis) table with similar schema as the *diagnosis_icd* table.
+- **mimic_ed**: *main*
+  - Removed diagnosis from this table (inserted into *diagnosis* above)
+
+The next version of MIMIC-IV will likely make changes to the **mimic_ed** schema.
+
+### MIMIC-IV v0.1
 
 MIMIC-IV v0.1 was released on 15 August 2019.

@@ -1,5 +1,5 @@
 +++
-title = "Labevents"
+title = "labevents"
 linktitle = "labevents"
 weight = 1
 toc = false
@@ -10,20 +10,14 @@ toc = false
 
 +++
 
-# The LABEVENTS table
+## *labevents*
 
-The LABEVENTS table stores the results of all laboratory measurements made for a single patient.
+The *labevents* table stores the results of all laboratory measurements made for a single patient.
 These include hematology measurements, blood gases, chemistry panels, and less common tests such as genetic assays.
 
-**Table source:** Hospital database.
+## Links to
 
-**Table purpose:** Store laboratory measurements for all patients.
-
-**Number of rows:** 
-
-**Links to:**
-
-* D_LABITEMS on `itemid`
+* *d_labitems* on `itemid`
 
 <!--
 
@@ -31,7 +25,7 @@ These include hematology measurements, blood gases, chemistry panels, and less c
 
 -->
 
-# Table columns
+## Table columns
 
 Name | Postgres data type
 ---- | ----
@@ -50,6 +44,11 @@ Name | Postgres data type
 `flag` | VARCHAR(10)
 `priority` | VARCHAR(7)
 
-## `subject_id`
 
-`subject_id` is a unique identifier which specifies an individual patient. Any rows associated with a single `subject_id` pertain to the same individual.
+### `subject_id`
+
+{{% include "/static/include/subject_id.md" %}}
+
+### `hadm_id`
+
+{{% include "/static/include/hadm_id.md" %}}

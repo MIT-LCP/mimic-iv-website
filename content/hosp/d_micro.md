@@ -10,20 +10,15 @@ toc = false
 
 +++
 
+## *d_micro*
 
-# The d_micro table
+Definition table for all microbiology measurements.
 
-**Table source:** Hospital database.
+### Links to
 
-**Table purpose:** Definition table for all microbiology measurements.
+* microbiologyevents on `itemid`
 
-**Number of rows:** 
-
-**Links to:** 
-
-* MICROBIOLOGYEVENTS on `ITEMID`
-
-# Table columns
+## Table columns
 
 Name | Postgres data type 
 ---- | ---- 
@@ -31,21 +26,23 @@ Name | Postgres data type
 `label` | VARCHAR(200)
 `category` | VARCHAR(100)
 
-## `ITEMID`
+## Detailed Description
 
-As the primary key of the table, `ITEMID` is unique to each row.
+### `itemid`
 
-## `LABEL`
+As the primary key of the table, `itemid` is unique to each row.
 
-The `LABEL` column describes the concept which is represented by the `ITEMID`, e.g. "AMPICILLIN".
+### `label`
 
-## `CATEGORY`
+The `label` column describes the concept which is represented by the `itemid`, e.g. "AMPICILLIN".
 
-`CATEGORY` categorizes the `ITEMID` into one of four types:
+### `category`
+
+`category` categorizes the `itemid` into one of four types:
 
 * ANTIBIOTIC
 * MICROTEST
 * ORGANISM
 * SPECIMEN
 
- "SPECIMEN" describes the sample taken to perform the test, "MICROTEST" describes the type of test performed, "ORGANISM" is the biological organism grown, and "ANTIBIOTIC" is the antibiotic used for evaluating sensitivity of an organism.
+"SPECIMEN" describes the sample taken to perform the test, "MICROTEST" describes the type of test performed, "ORGANISM" is the biological organism grown, and "ANTIBIOTIC" is the antibiotic used for evaluating sensitivity of an organism.
