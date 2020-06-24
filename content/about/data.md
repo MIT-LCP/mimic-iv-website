@@ -39,7 +39,7 @@ The current version of the database is v0.2. When referencing this version, we r
 - Updated demographics in the patient table
   - `anchor_year` -> `anchor_year_group`
   - `anchor_year_shifted` -> `anchor_year`
-  - See the [patients table](/datasets/core/patients) for detail on these columns
+  - See the [patients table](/core/patients) for detail on these columns
 - *transfers*
   - Deleted the `los` column
 - *emar*
