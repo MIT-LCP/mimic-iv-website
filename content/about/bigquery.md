@@ -10,7 +10,7 @@ toc = false
 
 +++
 
-# BigQuery UI
+## BigQuery UI
 
 The aim of this tutorial is to get you familiarized with BigQuery web UI to
 query/filter/aggregate/export data.
@@ -18,13 +18,12 @@ query/filter/aggregate/export data.
 This tutorial is based upon one from the [Google Healthcare datathon repository](https://github.com/GoogleCloudPlatform/healthcare).
 It is written with the *old* BigQuery interface, and focuses on the MIMIC-III/eICU-CRD datasets.
 
-## Prerequisites
+### Prerequisites
 
-*   You should already have had a valid Google account with access to the datasets.
-    *   If you do not have a Google account, you can create one at
-        http://www.gmail.com. You need to add this e-mail to your PhysioNet account.
-    *   Access to MIMIC-III/eICU-CRD can be done via the their PhysioNet project pages.
-    *   All users have access to the demo datasets.
+* You should already have had a valid Google account with access to the datasets.
+  * If you do not have a Google account, you can create one at http://www.gmail.com. You need to add this e-mail to your PhysioNet account.
+* Access to MIMIC-III/eICU-CRD can be done via the their PhysioNet project pages.
+* All users have access to the demo datasets.
 
 PhysioNet does not cover the cost of queries against `physionet-data`
 (though this cost is mostly trivial). In order to run queries, you will need
@@ -37,7 +36,7 @@ read-access privileges to these datasets. As a result, if you would like to save
 the results of any queries, you will need to save them to a dataset created
 on your own project.
 
-# TLDR
+## TLDR
 
 In this section we are going to run a query to briefly showcase BigQuery's
 capability. The goal is to aggregate the mimic demo data to find out the
@@ -75,13 +74,13 @@ The following is a scatter chart plotted from the result with Google Sheets.
 
 ![Scatter chart](/img/bigquery/scatter_chart.png)
 
-# Detailed Tutorial
+## Detailed Tutorial
 
-## BigQuery Basics
+### BigQuery Basics
 
 Feel free to skip this section if you are already familiar with BigQuery.
 
-### BigQuery Table Name
+#### BigQuery Table Name
 
 A BigQuery table is uniquely identified by the three-layer hierarchy of project
 ID, dataset ID and table name. For example in the following query:
@@ -102,17 +101,16 @@ dataset resides in the same project, you can safely omit the project name,
 e.g.`my-project.my_dataset.my_table`can be written as`my_dataset.my_table`
 instead.
 
-### SQL Dialect
+#### SQL Dialect
 
 BigQuery supports 2 SQL dialects, legacy and standard. During this datathon we
 highly recommend using standard SQL dialect.
 
 **Follow the steps below to make sure the StandardSQL dialect is used**:
 
-1.  Click "COMPOSE QUERY" on top left corner;
-2.  Click "Show Options" below the input area;
-3.  Lastly, make sure "Use Legacy SQL" is **NOT** checked, and click "Hide
-    Options".
+1. Click "COMPOSE QUERY" on top left corner;
+2. Click "Show Options" below the input area;
+3. Lastly, make sure "Use Legacy SQL" is **NOT** checked, and click "Hide Options".
 
 ![Uncheck "Use Legacy SQL"](/img/bigquery/dialect.png)
 
@@ -160,15 +158,12 @@ FROM `physionet-data.mimiciii_demo.icustays`
 Let's save the result of previous query to an intermediate table for later
 analysis:
 
-1.  Create a dataset by clicking the caret below the search box on the left
-    sidebar, and choose "Create new dataset";
-    *   Set dataset ID to "temp" and data expiration to 2 days;
-    *   Click "OK" to save the dataset.
-2.  Click "Save to table" button on the right;
-    *   Set destination dataset to "temp" and table to "icustays", use the
-        default value for project;
-    *   Click "OK" to save the table, it usually takes less than a few seconds
-        for demo tables.
+1. Create a dataset by clicking the caret below the search box on the left sidebar, and choose "Create new dataset";
+    * Set dataset ID to "temp" and data expiration to 2 days;
+    * Click "OK" to save the dataset.
+2. Click "Save to table" button on the right;
+    * Set destination dataset to "temp" and table to "icustays", use the default value for project;
+    * Click "OK" to save the table, it usually takes less than a few seconds for demo tables.
 
 ![Create a dataset](/img/bigquery/create_dataset.png)
 
@@ -261,37 +256,37 @@ through the chart editor on the right.
 Datathon organizers might not allow you to create new tables. However, you can
 save a view of a query's output to then use in later queries.
 
-1.  **Create a temporary dataset in the datathon project.** Next to the datathon
-    project in the left side of the BigQuery UI, click the arrow and then
-    `Create new dataset`. Give the dataset a temporary name that can be
-    identified to your team (like 'team6temp').
-1.  **Save the view.** After running your query, click the button next to `Run
-    Query` that says `Save view`. Select the temporary dataset you created and
-    then give the view a name.
-1.  **Query your view.** Now you can perform a query using the syntax
-    `project.dataset.view` like the following:
+1. **Create a temporary dataset in the datathon project.** Next to the datathon
+   project in the left side of the BigQuery UI, click the arrow and then
+   `Create new dataset`. Give the dataset a temporary name that can be
+   identified to your team (like 'team6temp').
+1. **Save the view.** After running your query, click the button next to `Run
+   Query` that says `Save view`. Select the temporary dataset you created and
+   then give the view a name.
+1. **Query your view.** Now you can perform a query using the syntax
+   `project.dataset.view` like the following:
 
-    ```SQL
-    SELECT * FROM `datathon_project.team6temp.our_custom_view`;
-    ```
+   ```SQL
+   SELECT * FROM `datathon_project.team6temp.our_custom_view`;
+   ```
 
 ### Working with DATETIME
 
 The times in the tables are stored as DATETIME objects. This means you cannot
 use operators like <, =, or > for comparing them.
 
-*   Use the
-    [DATETIME functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions)in
-    BigQuery. An example would be if you were trying to find things within 1
-    hour of another event. In that case, you could use the native DATETIME_SUB()
-    function. In the example below, we are looking for stays of less than 1 hour
-    (where the admit time is less than 1 hour away from the discharge time).
-    `[...] WHERE ADMITTIME BETWEEN DATETIME_SUB(DISCHTIME, INTERVAL 1 HOUR) AND
-    DISCHTIME`
+* Use the
+  [DATETIME functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/datetime_functions)in
+  BigQuery. An example would be if you were trying to find things within 1
+  hour of another event. In that case, you could use the native DATETIME_SUB()
+  function. In the example below, we are looking for stays of less than 1 hour
+  (where the admit time is less than 1 hour away from the discharge time).
+  `[...] WHERE ADMITTIME BETWEEN DATETIME_SUB(DISCHTIME, INTERVAL 1 HOUR) AND
+  DISCHTIME`
 
-*   If you are more comfortable working with timestamps, you can cast the
-    DATETIME object to a TIMESTAMP object and then use the
-    [TIMESTAMP functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions).
+* If you are more comfortable working with timestamps, you can cast the
+  DATETIME object to a TIMESTAMP object and then use the
+  [TIMESTAMP functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions).
 
 ### Input / Output Options
 
