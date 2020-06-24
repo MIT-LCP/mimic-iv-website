@@ -55,6 +55,7 @@ The current version of the database is v0.2. When referencing this version, we r
 - *labevents*
   - Many previously NULL values are now populated - these were removed originally due to deidentification
   - Added the `comments` column. This contains deidentified free-text comments with labs. PHI is replaced with three underscores (`___`). If an entire comment is `___`, then the entire comment was scrubbed.
+  - `spec_id` -> `specimen_id`
 - *microbiologyevents*
   - `stay_id` column removed
   - `spec_id` -> `micro_specimen_id`
@@ -68,10 +69,10 @@ The current version of the database is v0.2. When referencing this version, we r
   - Fixed an error in the calculation of the *amount* column
 - *icustays*
   - Re-derived `stay_id` - the new `stay_id` are distinct from the previous version.
-- **mimic_ed**: *diagnosis*
+- *diagnosis*
   - Added [*diagnosis*](/ed/diagnosis) table with similar schema as the *diagnosis_icd* table.
-- **mimic_ed**: *main*
-  - Removed diagnosis from this table (inserted into *diagnosis* above)
+- *main*
+  - Removed diagnosis columns from this table (inserted into *diagnosis* above)
 
 ### MIMIC-IV v0.1
 
