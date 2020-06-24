@@ -11,7 +11,7 @@ toc = false
 
 +++
 
-# Getting Access
+## Getting Access
 
 Access to MIMIC-IV is strictly controlled by the LCP, and all users who wish to use MIMIC-IV must be granted approval to use the data directly by the LCP.
 During the final preparation phase access is made available to members of the [Critical Data Consortium](https://clinicaldata.mit.edu/).
@@ -24,7 +24,7 @@ As data is distributed via Google Cloud Platform (GCP), a valid Google account i
 
 More detail on these three steps is provided below.d
 
-## Credentialing
+### Credentialing
 
 A user must be credentialed in order to access the database, as appropriate training is necessary for the handling of human subjects in research.
 Credentialing requires completion of a training course, as follows:
@@ -35,13 +35,13 @@ Credentialing requires completion of a training course, as follows:
 
 Once completed, register an account on PhysioNet. Navigate to the credentialing page, and apply for credentialed privileges: https://physionet.org/settings/credentialing/
 
-## Data use agreement
+### Data use agreement
 
 Once your account is credentialed, sign the data use agreement for MIMIC-III: https://physionet.org/content/mimiciii/
 
 Be sure to specify the Google Cloud Platform account you will use: https://physionet.org/settings/cloud/
 
-## Contact us
+### Contact us
 
 Once approved, send an e-mail to mimic-support@physionet.org with:
 
