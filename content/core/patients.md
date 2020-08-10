@@ -18,12 +18,21 @@ Information that is consistent for the lifetime of a patient is stored in this t
 
 Name | Postgres data type
 ---- | ----
+<<<<<<< HEAD
 `subject_id` | INTEGER
 `gender` | VARCHAR(1)
 `anchor_age` | INTEGER
 `anchor_year` | INTEGER
 `anchor_year_group` | VARCHAR(255)
 `dod` | TIMESTAMP(0)
+=======
+subject_id | INT
+GENDER | VARCHAR(5)
+ANCHOR\_AGE | INT
+ANCHOR\_YEAR | INT
+ANCHOR\_YEAR_SHIFTED | INT
+DOD | TIMESTAMP(0)
+>>>>>>> update patient table with anchor info
 
 ## Detailed Description
 
@@ -49,7 +58,10 @@ These columns provide information regarding the actual patient year for the pati
   * The patient was 60 in the shifted year of 2153, i.e. they were 60 in 2008, 2009, or 2010.
   * A patient admission in 2154 will occur in 2009-2011, an admission in 2155 will occur in 2010-2012, and so on.
 
-### `dod`
+## `ANCHOR_AGE`, `ANCHOR_YEAR`, `ANCHOR_YEAR_SHIFTED`
 
-If the patient died, then `dod` is their deidentified date of death.
-If the patient has no recorded date of death, the value is `NULL`.
+`ANCHOR_AGE`, `ANCHOR_YEAR`, and `ANCHOR_YEAR_SHIFTED` are intended to be analyzed together. The `ANCHOR_AGE` is the age of the patient in the given `ANCHOR_YEAR`/`ANCHOR_YEAR_SHIFTED`. In order to determine the age of a patient on admission to the hospital, it is necessary to account for the number of years between `ANCHOR_YEAR_SHIFTED` and their hospital admission time.
+
+## `DOD`
+
+The de-identified date of death for the patient. Date of death is extracted from the hospital information system only, and does not include out of hospital mortality as of MIMIC-IV v1.0.
